@@ -48,7 +48,7 @@ def t_ID(t):
 
 
 lexer = lex.lex()
-lexer.input('connect[1;2]!?')
+lexer.input('connect[1;2]!')
 
 if __name__ == '__main__':
 
