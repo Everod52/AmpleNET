@@ -48,7 +48,9 @@ def t_ID(t):
 
 
 lexer = lex.lex()
-lexer.input('connect[1;2]!')
+lexer.input('connect[1;2]!'
+            'open[s2]'
+            'send[serverMessage]')
 
 if __name__ == '__main__':
 
