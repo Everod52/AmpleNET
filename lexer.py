@@ -1,6 +1,7 @@
 import ply.lex as lex
 
 
+# Reserved words
 reserved_words = {
     'connect': 'CONNECT',
     'open': 'OPEN',
@@ -18,18 +19,18 @@ tokens = [
 ] + list(reserved_words.values())
 
 
-# REGULAR EXPRESSIONS FOR TOKENS
+# REGULAR EXPRESSION RULES
+# Left bracket
 t_LB = r'\['
+
+# Right bracket
 t_RB = r'\]'
+
+# Exclamation point
 t_EXCLAMATION = r'!'
+
+# Semicolon
 t_SEMICOLON = r';'
-
-t_ignore = '\n \t'
-
-
-def t_error(t):
-    print('Error Illegal character')
-    t.lexer.skip(1)
 
 
 # Match numbers
@@ -47,8 +48,29 @@ def t_ID(t):
     return t
 
 
+# Characters to ignore
+t_ignore = '\n \t'
+
+
+# Error rule
+def t_error(t):
+    print('Error Illegal character')
+    t.lexer.skip(1)
+
+
+# # Comment
+# def t_COMMENTS(t):
+#     r'\%.*'
+#     pass
+
+
+# Build the lexer
 lexer = lex.lex()
-lexer.input('connect[1;2]!')
+
+# Read the input
+lexer.input('connect[1;2]!'
+            'open[s2]'
+            'send[serverMessage]')
 
 if __name__ == '__main__':
 
