@@ -3,6 +3,9 @@
 import ply.yacc as yacc
 
 from lexer import tokens
+from server.server_controller import ServerController
+
+controller = ServerController()
 
 
 def p_process(p):
@@ -13,40 +16,44 @@ def p_process(p):
 
 def p_create(p):
     '''
-    create : OPEN LB ID SEMICOLON NUMBER RB
+    create : OPEN LB ID SEMICOLON ID SEMICOLON NUMBER RB
     '''
-
+    controller.create_server(p[3], p[5], p[7])
 
 
 def p_join(p):
     '''
-    join : CONNECT LB RB
+    join : CONNECT LB ID SEMICOLON ID RB
     '''
+
 
 def p_talk(p):
     '''
     talk : SEND LB object RB
     '''
 
+
 def p_object(p):
     '''
     object : ID
     '''
-    print(p[1])
+    p[0] = p[1]
+
 
 # Error rule for syntax errors
 def p_error(p):
-    print("Syntax error in input!")
+    print("Syntax error in input at %s" % p)
 
 
 # Build the parser
 
 parser = yacc.yacc()
 
-while True:
-    try:
-        s = input('')
-    except EOFError:
-        break
+if __name__ == '__main__':
+    while True:
+        try:
+            s = input('')
+        except EOFError:
+            break
 
-    parser.parse(s)
+        parser.parse(s)
