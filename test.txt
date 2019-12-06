@@ -1,5 +1,5 @@
-open[s1;10.31.5.227;4567]!
-open[s2;10.31.5.227;4789]!
+open[s1;ID;4567]!
+open[s2;ID;4789]!
 (this is a comment)
 connect[s1;s2]!
 send[s1;s2;<Juana te amo>]!
