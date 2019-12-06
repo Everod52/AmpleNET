@@ -42,7 +42,7 @@ def t_NUMBER(t):
 
 # Match an identifier
 def t_ID(t):
-    r'[a-zA-Z_][a-zA-Z_0-9]*'
+    r'[a-zA-Z-_][a-zA-Z-_0-9]*'
     if t.value in reserved_words:
         t.type = reserved_words[t.value]
     return t
@@ -68,14 +68,12 @@ def t_error(t):
 lexer = lex.lex()
 
 # Read the input
-lexer.input('connect[1;2]!'
-            'open[s2]'
-            'send[serverMessage]')
-
-if __name__ == '__main__':
-
-    while True:
-        tok = lexer.token()
-        if not tok:
-            break
-        print(tok)
+# lexer.input('open[s1;DESKTOP-95KQK54;3567]! open[s2;DESKTOP-95KQK54;3789]! connect[s1;s2]! send[s1;s2;lol]!')
+#
+# if __name__ == '__main__':
+#
+#     while True:
+#         tok = lexer.token()
+#         if not tok:
+#             break
+#         print(tok)
