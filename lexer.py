@@ -53,8 +53,6 @@ def t_NUMBER(t):
 #Match a message
 def t_MESSAGE(t):
     r'\<(.)+\>'
-    if t.value in reserved_words:
-        t.type = reserved_words[t.value]
     return t
 
 # Match an identifier
@@ -85,12 +83,12 @@ def t_error(t):
 lexer = lex.lex()
 
 # Read the input
-lexer.input("yolo open [] 234.456.56.7 <gjwigqorbqom  qrg > coll !")
+lexer.input(read_file("test.txt"))
 
-if __name__ == '__main__':
-
-    while True:
-        tok = lexer.token()
-        if not tok:
-            break
-        print(tok)
+# if __name__ == '__main__':
+#
+#     while True:
+#         tok = lexer.token()
+#         if not tok:
+#             break
+#         print(tok)
