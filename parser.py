@@ -11,7 +11,7 @@ controller = ServerController()
 
 def p_process(p):
     '''
-    process : create EXCLAMATION create EXCLAMATION join EXCLAMATION talk EXCLAMATION
+    process : create EXCLAMATION create EXCLAMATION join EXCLAMATION communication
     '''
 
 
@@ -34,19 +34,17 @@ def p_join(p):
     '''
     controller.connect_server(p[3], p[5])
 
+def p_communication(p):
+    '''
+    communication : talk EXCLAMATION communication
+                | talk EXCLAMATION
+    '''
 
 def p_talk(p):
     '''
     talk : SEND LB ID SEMICOLON ID SEMICOLON MESSAGE RB
     '''
     controller.send_message(p[3], p[5], p[7])
-
-
-# def p_object(p):
-#     '''
-#     object : ID | MESSAGE
-#     '''
-#     p[0] = p[1]
 
 
 # Error rule for syntax errors
