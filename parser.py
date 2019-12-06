@@ -37,16 +37,16 @@ def p_join(p):
 
 def p_talk(p):
     '''
-    talk : SEND LB ID SEMICOLON ID SEMICOLON object RB
+    talk : SEND LB ID SEMICOLON ID SEMICOLON MESSAGE RB
     '''
     controller.send_message(p[3], p[5], p[7])
 
 
-def p_object(p):
-    '''
-    object : ID
-    '''
-    p[0] = p[1]
+# def p_object(p):
+#     '''
+#     object : ID | MESSAGE
+#     '''
+#     p[0] = p[1]
 
 
 # Error rule for syntax errors
