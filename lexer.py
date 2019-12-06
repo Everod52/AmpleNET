@@ -2,6 +2,8 @@ import ply.lex as lex
 
 
 # Reserved words
+from file_reader import read_file
+
 reserved_words = {
     'connect': 'CONNECT',
     'open': 'OPEN',
@@ -10,6 +12,7 @@ reserved_words = {
 
 # TOKENS
 tokens = [
+    'IP',
     'NUMBER',
     'LB',
     'RB',
@@ -31,6 +34,13 @@ t_EXCLAMATION = r'!'
 
 # Semicolon
 t_SEMICOLON = r';'
+
+
+# Match IP addresses
+def t_IP(t):
+    r'\d+\.\d+\.\d+\.\d+'
+    t.value = str(t.value)
+    return t
 
 
 # Match numbers
@@ -68,12 +78,12 @@ def t_error(t):
 lexer = lex.lex()
 
 # Read the input
-# lexer.input('open[s1;DESKTOP-95KQK54;3567]! open[s2;DESKTOP-95KQK54;3789]! connect[s1;s2]! send[s1;s2;lol]!')
-#
-# if __name__ == '__main__':
-#
-#     while True:
-#         tok = lexer.token()
-#         if not tok:
-#             break
-#         print(tok)
+lexer.input(read_file('test.txt'))
+
+if __name__ == '__main__':
+
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break
+        print(tok)
