@@ -1,4 +1,5 @@
 open[s1;IP;4567]!
 open[s2;IP;4789]!
+(this is a comment)
 connect[s1;s2]!
 send[s1;s2;<lol Juana te amo>]!

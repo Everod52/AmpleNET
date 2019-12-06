@@ -37,6 +37,12 @@ t_EXCLAMATION = r'!'
 t_SEMICOLON = r';'
 
 
+# Comments
+def t_COMMENTS(t):
+    r'\(.*\)'
+    pass
+
+
 # Match IP addresses
 def t_IP(t):
     r'\d+\.\d+\.\d+\.\d+'
@@ -50,10 +56,12 @@ def t_NUMBER(t):
     t.value = int(t.value)
     return t
 
-#Match a message
+
+# Match a message
 def t_MESSAGE(t):
     r'\<(.)+\>'
     return t
+
 
 # Match an identifier
 def t_ID(t):
