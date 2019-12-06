@@ -15,12 +15,6 @@ def p_process(p):
     '''
 
 
-# def p_create_ID(p):
-#     '''
-#     create : OPEN LB ID SEMICOLON ID SEMICOLON NUMBER RB
-#     '''
-#     controller.create_server(p[3], p[5], p[7])
-
 def p_create_IP(p):
     '''
     create : OPEN LB ID SEMICOLON IP SEMICOLON NUMBER RB
