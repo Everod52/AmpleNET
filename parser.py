@@ -25,12 +25,14 @@ def p_join(p):
     '''
     join : CONNECT LB ID SEMICOLON ID RB
     '''
+    controller.connect_server(p[3],p[5])
 
 
 def p_talk(p):
     '''
-    talk : SEND LB object RB
+    talk : SEND LB ID SEMICOLON ID SEMICOLON object RB
     '''
+    controller.send_message(p[3],p[5],p[7])
 
 
 def p_object(p):
@@ -42,18 +44,18 @@ def p_object(p):
 
 # Error rule for syntax errors
 def p_error(p):
-    print("Syntax error in input at %s" % p)
+    print("Syntax error in input at %s" %p )
 
 
 # Build the parser
 
 parser = yacc.yacc()
 
-if __name__ == '__main__':
-    while True:
-        try:
-            s = input('')
-        except EOFError:
-            break
-
-        parser.parse(s)
+# if __name__ == '__main__':
+#     while True:
+#         try:
+#             s = input('')
+#         except EOFError:
+#             break
+#
+#         parser.parse(s)
