@@ -12,6 +12,7 @@ reserved_words = {
 
 # TOKENS
 tokens = [
+    'MESSAGE',
     'IP',
     'NUMBER',
     'LB',
@@ -49,6 +50,10 @@ def t_NUMBER(t):
     t.value = int(t.value)
     return t
 
+#Match a message
+def t_MESSAGE(t):
+    r'\<(.)+\>'
+    return t
 
 # Match an identifier
 def t_ID(t):
@@ -78,12 +83,12 @@ def t_error(t):
 lexer = lex.lex()
 
 # Read the input
-lexer.input(read_file('test.txt'))
+lexer.input(read_file("test.txt"))
 
-if __name__ == '__main__':
-
-    while True:
-        tok = lexer.token()
-        if not tok:
-            break
-        print(tok)
+# if __name__ == '__main__':
+#
+#     while True:
+#         tok = lexer.token()
+#         if not tok:
+#             break
+#         print(tok)

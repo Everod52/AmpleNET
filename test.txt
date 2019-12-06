@@ -1,4 +1,4 @@
 open[s1;IP;4567]!
 open[s2;IP;4789]!
 connect[s1;s2]!
-send[s1;s2;lol]!
+send[s1;s2;<lol Juana te amo>]!

@@ -40,7 +40,7 @@ class ServerController:
         target = server1['connection']
         receiver = server2['server'].sock
 
-        target.send(bytes(content, "utf-8"))
+        target.send(bytes(content[1:len(content)-1], "utf-8"))
         data = receiver.recv(1024).decode('utf-8')
         print("Message sent from %s " % server1['server'] +
               "to %s " % server2['server'] + ': ', data)
