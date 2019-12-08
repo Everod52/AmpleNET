@@ -14,6 +14,7 @@ def p_process(p):
             | join EXCLAMATION communication
     '''
 
+
 def p_create_DEFAULT(p):
     '''
     create : DEFAULT LB ID RB
@@ -27,6 +28,7 @@ def p_create_IP(p):
     create : OPEN LB ID SEMICOLON IP SEMICOLON NUMBER RB
     '''
     controller.create_server(p[3], p[5], p[7])
+
 
 def p_join(p):
     '''
