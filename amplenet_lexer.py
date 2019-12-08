@@ -86,7 +86,7 @@ def t_error(t):
 lexer = lex.lex()
 
 # Read the input
-lexer.input(read_file("test.txt"))
+lexer.input(read_file("/tests/test.txt"))
 
 if __name__ == '__main__':
 

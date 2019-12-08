@@ -62,5 +62,5 @@ def p_error(p):
 parser = yacc.yacc()
 
 if __name__ == '__main__':
-    s = read_file('test2.txt')
+    s = read_file('/tests/test2.txt')
     parser.parse(s)
