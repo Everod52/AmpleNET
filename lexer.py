@@ -8,6 +8,7 @@ reserved_words = {
     'connect': 'CONNECT',
     'open': 'OPEN',
     'send': 'SEND',
+    'default' : 'DEFAULT'
 }
 
 # TOKENS
@@ -79,13 +80,6 @@ t_ignore = '\n \t'
 def t_error(t):
     print('Error Illegal character')
     t.lexer.skip(1)
-
-
-# # Comment
-# def t_COMMENTS(t):
-#     r'\%.*'
-#     pass
-
 
 # Build the lexer
 lexer = lex.lex()

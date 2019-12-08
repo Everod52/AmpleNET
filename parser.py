@@ -12,7 +12,15 @@ controller = ServerController()
 def p_process(p):
     '''
     process : create EXCLAMATION create EXCLAMATION join EXCLAMATION communication
+            | join EXCLAMATION communication
     '''
+
+def p_create_DEFAULT(p):
+    '''
+    create : DEFAULT LB ID RB
+    '''
+    controller.create_default(p[3])
+    p[0]=p[3]
 
 
 def p_create_IP(p):
@@ -21,10 +29,10 @@ def p_create_IP(p):
     '''
     controller.create_server(p[3], p[5], p[7])
 
-
 def p_join(p):
     '''
     join : CONNECT LB ID SEMICOLON ID RB
+        | CONNECT LB create SEMICOLON create RB
     '''
     controller.connect_server(p[3], p[5])
 
@@ -51,5 +59,5 @@ def p_error(p):
 parser = yacc.yacc()
 
 if __name__ == '__main__':
-    s = read_file('test.txt')
+    s = read_file('test3.txt')
     parser.parse(s)

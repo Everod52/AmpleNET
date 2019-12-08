@@ -1,0 +1,5 @@
+(Using default command as parameter of connect)
+connect[default[s1];default[s2]]!
+send[s1;s2;<I have sent a message>]!
+send[s2;s1;<I can see such message>]!
+send[s1;s2;<Sending message back>]!
