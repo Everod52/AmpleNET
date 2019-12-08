@@ -3,8 +3,9 @@
 import ply.yacc as yacc
 
 from file_reader import read_file
-from lexer import tokens
+from amplenet_lexer import tokens
 from server.server_controller import ServerController
+
 
 controller = ServerController()
 

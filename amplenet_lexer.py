@@ -81,22 +81,16 @@ def t_error(t):
     t.lexer.skip(1)
 
 
-# # Comment
-# def t_COMMENTS(t):
-#     r'\%.*'
-#     pass
-
-
 # Build the lexer
 lexer = lex.lex()
 
 # Read the input
 lexer.input(read_file("test.txt"))
 
-# if __name__ == '__main__':
-#
-#     while True:
-#         tok = lexer.token()
-#         if not tok:
-#             break
-#         print(tok)
+if __name__ == '__main__':
+
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break
+        print(tok)

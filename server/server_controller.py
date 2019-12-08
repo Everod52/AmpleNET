@@ -44,5 +44,3 @@ class ServerController:
         data = receiver.recv(1024).decode('utf-8')
         print("Message sent from %s " % server1['server'] +
               "to %s " % server2['server'] + ': ', data)
-
-
