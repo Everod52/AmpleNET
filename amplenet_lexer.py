@@ -78,7 +78,7 @@ t_ignore = '\n \t'
 
 # Error rule
 def t_error(t):
-    print('Error Illegal character')
+    print('Error Illegal character.')
     t.lexer.skip(1)
 
 
