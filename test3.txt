@@ -1,0 +1,7 @@
+(Using default command to create servers)
+default[server1]!
+default[server2]!
+connect[server1;server2]!
+send[server1;server2;<This is a test>]!
+send[server2;server1;<Of fortitude?>]!
+send[server1;server2;<No, of a programming language!>]!

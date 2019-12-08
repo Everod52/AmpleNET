@@ -1,5 +1,5 @@
-open[s1;IP;4567]!
-open[s2;IP;4789]!
+open[s1;yourIP;4000]!
+open[s2;yourIP;5000]!
 (this is a comment)
 connect[s1;s2]!
 send[s1;s2;<Juana te amo>]!
