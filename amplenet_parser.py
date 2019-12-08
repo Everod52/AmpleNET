@@ -1,8 +1,9 @@
 import ply.yacc as yacc
 
 from file_reader import read_file
-from lexer import tokens
+from amplenet_lexer import tokens
 from server.server_controller import ServerController
+
 
 controller = ServerController()
 
@@ -12,6 +13,7 @@ def p_process(p):
     process : create EXCLAMATION create EXCLAMATION join EXCLAMATION communication
             | join EXCLAMATION communication
     '''
+
 
 def p_create_DEFAULT(p):
     '''
@@ -27,6 +29,7 @@ def p_create_IP(p):
     '''
     controller.create_server(p[3], p[5], p[7])
 
+
 def p_join(p):
     '''
     join : CONNECT LB ID SEMICOLON ID RB
@@ -34,11 +37,13 @@ def p_join(p):
     '''
     controller.connect_server(p[3], p[5])
 
+
 def p_communication(p):
     '''
     communication : talk EXCLAMATION communication
                 | talk EXCLAMATION
     '''
+
 
 def p_talk(p):
     '''

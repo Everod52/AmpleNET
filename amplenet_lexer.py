@@ -81,16 +81,17 @@ def t_error(t):
     print('Error Illegal character')
     t.lexer.skip(1)
 
+
 # Build the lexer
 lexer = lex.lex()
 
 # Read the input
 lexer.input(read_file("test.txt"))
 
-# if __name__ == '__main__':
-#
-#     while True:
-#         tok = lexer.token()
-#         if not tok:
-#             break
-#         print(tok)
+if __name__ == '__main__':
+
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break
+        print(tok)
