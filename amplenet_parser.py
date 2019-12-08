@@ -16,7 +16,7 @@ def p_process(p):
     '''
 
 
-def p_create_IP(p):
+def p_create(p):
     '''
     create : OPEN LB ID SEMICOLON IP SEMICOLON NUMBER RB
     '''
@@ -29,11 +29,13 @@ def p_join(p):
     '''
     controller.connect_server(p[3], p[5])
 
+
 def p_communication(p):
     '''
     communication : talk EXCLAMATION communication
                 | talk EXCLAMATION
     '''
+
 
 def p_talk(p):
     '''

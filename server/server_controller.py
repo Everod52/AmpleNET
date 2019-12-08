@@ -1,4 +1,10 @@
+import logging
+
 from server.server import Server
+
+
+logging.basicConfig(filename='log.log', level=logging.DEBUG, filemode='w',
+                    format='[%(asctime)s - %(name)s - %(levelname)s]: %(message)s')
 
 
 class ServerController:
@@ -21,15 +27,22 @@ class ServerController:
             server1 = server1['server']
             server2 = server2['server']
             server1.listen()
-            server2.connect(server1)
+            try:
+                server2.connect(server1)
+            except InterruptedError as e:
+                print("Error: Connection was interrupted by another signal: %s", e)
+                logging.error("Error: Connection was interrupted by another signal: %s", e)
             conn, addr = server1.accept()
-            print("Connection from %s " % server1 + "established with %s " % server2)
+            print("Connection from %s was successfully established with %s" % (server1, server2))
+            logging.info("Connection from %s was successfully established with %s", server1, server2)
             self.servers[s1]['connection'] = conn
             self.servers[s1]['address'] = addr
 
         else:
-            print("Server ids invalid")
+            print("Server ids are invalid")
+            logging.warning("Server ids are invalid")
             print("Error: no connection can be established!")
+            logging.error("No connection could be established!")
 
     def send_message(self, s1, s2, content):
         server1 = self.servers.get(s1, None)
@@ -38,17 +51,13 @@ class ServerController:
         if server1['connection']:
             sender = server1['connection']
             receiver = server2['server'].sock
-
-            sender.send(bytes(content[1:len(content)-1], "utf-8"))
-            data = receiver.recv(1024).decode('utf-8')
-            print("Message sent from %s" % server1['server'] +
-                "to %s " % server2['server'] + ': ', data)
-
         else:
             sender = server1['server'].sock
             receiver = server2['connection']
 
-            sender.send(bytes(content[1:len(content) - 1], "utf-8"))
-            data = receiver.recv(1024).decode('utf-8')
-            print("Message sent from %s " % server1['server'] +
-                  "to %s" % server2['server'] + ': ', data)
+        sender.send(bytes(content[1:len(content) - 1], "utf-8"))
+        data = receiver.recv(1024).decode('utf-8')
+        print("Message sent from %s to %s : %s" %
+              (server1['server'], server2['server'], data))
+        logging.info("Message sent from %s to %s : %s",
+                         server1['server'], server2['server'],  data)
