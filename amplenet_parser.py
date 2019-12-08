@@ -16,7 +16,7 @@ def p_process(p):
     '''
 
 
-def p_create(p):
+def p_create_IP(p):
     '''
     create : OPEN LB ID SEMICOLON IP SEMICOLON NUMBER RB
     '''
