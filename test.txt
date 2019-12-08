@@ -1,6 +1,7 @@
 open[s1;IP;4567]!
 open[s2;IP;4789]!
-
 (this is a comment)
 connect[s1;s2]!
-send[s1;s2;<lol Juana te amo>]!
+send[s1;s2;<Juana te amo>]!
+send[s2;s1;<me has roto el corazon>]!
+send[s1;s2;<no fui yo>]!

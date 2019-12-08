@@ -11,7 +11,7 @@ class Server:
         self.sock.bind((host, port))
 
     def __str__(self):
-        return '%s (%s:%s)' % (self.id, self.host, self.port)
+        return '%s (%s , %s)' % (self.id, self.host, self.port)
 
     def listen(self, servers=5):
         self.sock.listen(servers)

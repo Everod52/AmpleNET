@@ -23,12 +23,10 @@ class ServerController:
             server1.listen()
             server2.connect(server1)
             conn, addr = server1.accept()
-            print("Connection from %s " % server1 + "(%s ,%s) " % server1.sock.getsockname()
-                  + "established with %s " % server2 + "(%s ,%s)" % addr)
+            print("Connection from %s " % server1 + "established with %s " % server2)
             self.servers[s1]['connection'] = conn
             self.servers[s1]['address'] = addr
-            self.servers[s2]['connection'] = server1.sock
-            self.servers[s2]['address'] = server1.sock.getsockname()
+
         else:
             print("Server ids invalid")
             print("Error: no connection can be established!")
@@ -37,10 +35,20 @@ class ServerController:
         server1 = self.servers.get(s1, None)
         server2 = self.servers.get(s2, None)
 
-        target = server1['connection']
-        receiver = server2['server'].sock
+        if server1['connection']:
+            sender = server1['connection']
+            receiver = server2['server'].sock
 
-        target.send(bytes(content[1:len(content)-1], "utf-8"))
-        data = receiver.recv(1024).decode('utf-8')
-        print("Message sent from %s " % server1['server'] +
-              "to %s " % server2['server'] + ': ', data)
+            sender.send(bytes(content[1:len(content)-1], "utf-8"))
+            data = receiver.recv(1024).decode('utf-8')
+            print("Message sent from %s" % server1['server'] +
+                "to %s " % server2['server'] + ': ', data)
+
+        else:
+            sender = server1['server'].sock
+            receiver = server2['connection']
+
+            sender.send(bytes(content[1:len(content) - 1], "utf-8"))
+            data = receiver.recv(1024).decode('utf-8')
+            print("Message sent from %s " % server1['server'] +
+                  "to %s" % server2['server'] + ': ', data)
