@@ -1,5 +1,4 @@
-import random
-import socket
+
 
 from server.server import Server
 
@@ -16,13 +15,6 @@ class ServerController:
             'address': None
         }
 
-    def create_default(self, name):
-        s = Server(name, socket.gethostbyname(socket.gethostname()), random.randint(2000, 50000))
-        self.servers[name] = {
-            'server': s,
-            'connection': None,
-            'address': None
-        }
 
     def connect_server(self, s1, s2):
         server1 = self.servers.get(s1, None)

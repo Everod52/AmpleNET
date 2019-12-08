@@ -1,5 +1,6 @@
-# Yacc example
 
+import random
+import socket
 import ply.yacc as yacc
 
 from file_reader import read_file
@@ -19,7 +20,7 @@ def p_create_DEFAULT(p):
     '''
     create : DEFAULT LB ID RB
     '''
-    controller.create_default(p[3])
+    controller.create_server(p[3],socket.gethostbyname(socket.gethostname()),random.randint(2000, 50000))
     p[0]=p[3]
 
 
@@ -59,5 +60,5 @@ def p_error(p):
 parser = yacc.yacc()
 
 if __name__ == '__main__':
-    s = read_file('test3.txt')
+    s = read_file('test.txt')
     parser.parse(s)
