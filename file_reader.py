@@ -6,4 +6,4 @@ def read_file(file_name):
 
 
 if __name__ == '__main__':
-    print(read_file('test.txt'))
+    print(read_file('tests/test.txt'))

@@ -20,7 +20,7 @@ def p_create_DEFAULT(p):
     create : DEFAULT LB ID RB
     '''
     controller.create_default(p[3])
-    p[0]=p[3]
+    p[0] = p[3]
 
 
 def p_create_IP(p):
@@ -54,13 +54,13 @@ def p_talk(p):
 
 # Error rule for syntax errors
 def p_error(p):
-    print("Syntax error in input at %s" % p)
+    print("Syntax error in input at '%s', at line %s character %s." % (p.value, p.lineno, p.lexpos))
 
 
 # Build the parser
-
 parser = yacc.yacc()
 
+
 if __name__ == '__main__':
-    s = read_file('test2.txt')
+    s = read_file('tests/test2.txt')
     parser.parse(s)

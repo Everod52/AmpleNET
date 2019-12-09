@@ -8,7 +8,7 @@ reserved_words = {
     'connect': 'CONNECT',
     'open': 'OPEN',
     'send': 'SEND',
-    'default' : 'DEFAULT'
+    'default': 'DEFAULT'
 }
 
 # TOKENS
@@ -72,23 +72,30 @@ def t_ID(t):
     return t
 
 
+# Define a rule so we can track line numbers
+def t_newline(t):
+    r'\n+'
+    t.lexer.lineno += len(t.value)
+
+
 # Characters to ignore
-t_ignore = '\n \t'
+t_ignore = ' \t'
 
 
 # Error rule
 def t_error(t):
-    print('Error Illegal character')
+    print("ERROR: Illegal character '%s', at position %s, %s." %
+          (t.value[0], t.lineno, t.lexpos))
     t.lexer.skip(1)
 
 
 # Build the lexer
 lexer = lex.lex()
 
-# Read the input
-lexer.input(read_file("test.txt"))
 
 if __name__ == '__main__':
+    # Read the input
+    lexer.input(read_file("tests/test.txt"))
 
     while True:
         tok = lexer.token()
