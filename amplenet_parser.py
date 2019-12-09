@@ -20,7 +20,7 @@ def p_create_DEFAULT(p):
     create : DEFAULT LB ID RB
     '''
     controller.create_default(p[3])
-    p[0]=p[3]
+    p[0] = p[3]
 
 
 def p_create_IP(p):

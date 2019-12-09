@@ -8,7 +8,7 @@ reserved_words = {
     'connect': 'CONNECT',
     'open': 'OPEN',
     'send': 'SEND',
-    'default' : 'DEFAULT'
+    'default': 'DEFAULT'
 }
 
 # TOKENS
