@@ -3,6 +3,8 @@ import ply.yacc as yacc
 from file_reader import read_file
 from amplenet_lexer import tokens
 from server.server_controller import ServerController
+from server.external_server import ExternalServer
+from server.client import Client
 
 
 controller = ServerController()
@@ -22,6 +24,20 @@ def p_create_DEFAULT(p):
     controller.create_default(p[3])
     p[0] = p[3]
 
+def p_create_EXTERNAL(p):
+    '''
+    create : EXTERNAL LB ID SEMICOLON NUMBER RB
+    '''
+    external = ExternalServer(p[3], p[5])
+    external.start_recv()
+
+
+def p_client(p):
+    '''
+    create : CLIENT LB ID SEMICOLON IP SEMICOLON NUMBER RB
+    '''
+    client = Client(p[3], p[5],p[7])
+    client.send_mode()
 
 def p_create_IP(p):
     '''
@@ -62,5 +78,6 @@ parser = yacc.yacc()
 
 
 if __name__ == '__main__':
-    s = read_file('tests/test2.txt')
+    path = input("Enter path to file:")
+    s = read_file(path)
     parser.parse(s)
