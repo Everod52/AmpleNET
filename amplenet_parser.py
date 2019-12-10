@@ -3,6 +3,8 @@ import ply.yacc as yacc
 from file_reader import read_file
 from amplenet_lexer import tokens
 from server.server_controller import ServerController
+from server.external_server import ExternalServer
+from server.client import Client
 
 
 controller = ServerController()
@@ -23,11 +25,27 @@ def p_create_DEFAULT(p):
     p[0] = p[3]
 
 
+def p_create_EXTERNAL(p):
+    '''
+    create : EXTERNAL LB ID SEMICOLON NUMBER RB
+    '''
+    external = ExternalServer(p[3], p[5])
+    external.start_recv()
+
+
 def p_create_IP(p):
     '''
     create : OPEN LB ID SEMICOLON IP SEMICOLON NUMBER RB
     '''
     controller.create_server(p[3], p[5], p[7])
+
+
+def p_client(p):
+    '''
+    create : CLIENT LB ID SEMICOLON IP SEMICOLON NUMBER RB
+    '''
+    client = Client(p[3], p[5], p[7])
+    client.send_mode()
 
 
 def p_join(p):
@@ -54,7 +72,8 @@ def p_talk(p):
 
 # Error rule for syntax errors
 def p_error(p):
-    print("Syntax error in input at '%s', at line %s character %s." % (p.value, p.lineno, p.lexpos))
+    if p:
+        print("Syntax error in input at '%s', at line %s character %s." % (p.value, p.lineno, p.lexpos))
 
 
 # Build the parser
@@ -62,5 +81,6 @@ parser = yacc.yacc()
 
 
 if __name__ == '__main__':
-    s = read_file('tests/test2.txt')
+    file_name = input("Enter name of file to execute: ")
+    s = read_file("tests/%s.txt" % file_name)
     parser.parse(s)

@@ -6,8 +6,10 @@ from file_reader import read_file
 
 reserved_words = {
     'connect': 'CONNECT',
+    'client': 'CLIENT',
     'open': 'OPEN',
     'send': 'SEND',
+    'external': 'EXTERNAL',
     'default': 'DEFAULT'
 }
 
