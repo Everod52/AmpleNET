@@ -4,15 +4,16 @@ from amplenet_parser import parser
 def run():
     while True:
         try:
-            s = input('AmpleNET>> ')
+            s = input('\nAmpleNET>> ')
         except EOFError:
             break
         if not s:
             continue
-        elif s == 'exit':
+        elif s == 'exit!':
             break
-        result = parser.parse(s)
-        print(result)
+        parser.parse(s)
+        # result = parser.parse(s)
+        # print(result)
 
 
 if __name__ == '__main__':

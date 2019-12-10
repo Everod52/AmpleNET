@@ -42,7 +42,7 @@ def p_create_IP(p):
 
 def p_client(p):
     '''
-    client : CLIENT LB ID SEMICOLON IP SEMICOLON NUMBER RB
+    create : CLIENT LB ID SEMICOLON IP SEMICOLON NUMBER RB
     '''
     client = Client(p[3], p[5], p[7])
     client.send_mode()
@@ -72,7 +72,8 @@ def p_talk(p):
 
 # Error rule for syntax errors
 def p_error(p):
-    print("Syntax error in input at '%s', at line %s character %s." % (p.value, p.lineno, p.lexpos))
+    if p:
+        print("Syntax error in input at '%s', at line %s character %s." % (p.value, p.lineno, p.lexpos))
 
 
 # Build the parser
