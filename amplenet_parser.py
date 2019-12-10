@@ -14,7 +14,11 @@ def p_process(p):
     '''
     process : create EXCLAMATION create EXCLAMATION join EXCLAMATION communication
             | join EXCLAMATION communication
+            | create EXCLAMATION
+            | join EXCLAMATION
+            | communication
     '''
+    p[0]=''
 
 
 def p_create_DEFAULT(p):

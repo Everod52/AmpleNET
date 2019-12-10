@@ -20,6 +20,7 @@ class ServerController:
             'connection': None,
             'address': None
         }
+        print("Server named %s " %name + "created in host %s " %host + "and port %s." %port)
 
     def create_default(self, name):
         self.create_server(name, gethostbyname(gethostname()), randint(2000, 50000))
