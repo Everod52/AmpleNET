@@ -1,2 +1,2 @@
 (Creating external server)
-client[cliente;192.168.0.18;4000]!
+client[cliente;IP;4000]!

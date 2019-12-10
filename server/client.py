@@ -1,5 +1,5 @@
 import os
-from socket import *
+from socket import socket, AF_INET, SOCK_DGRAM
 
 
 class Client:
@@ -9,7 +9,7 @@ class Client:
         self.host = host
         self.port = port
         self.addr = (self.host, self.port)
-        self.name=name
+        self.name = name
 
     def send_mode(self):
         while True:

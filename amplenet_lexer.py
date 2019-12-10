@@ -13,7 +13,7 @@ reserved_words = {
     'default': 'DEFAULT'
 }
 
-# TOKENStests
+# TOKENS
 tokens = [
     'MESSAGE',
     'IP',

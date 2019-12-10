@@ -24,6 +24,7 @@ def p_create_DEFAULT(p):
     controller.create_default(p[3])
     p[0] = p[3]
 
+
 def p_create_EXTERNAL(p):
     '''
     create : EXTERNAL LB ID SEMICOLON NUMBER RB
@@ -32,18 +33,19 @@ def p_create_EXTERNAL(p):
     external.start_recv()
 
 
-def p_client(p):
-    '''
-    create : CLIENT LB ID SEMICOLON IP SEMICOLON NUMBER RB
-    '''
-    client = Client(p[3], p[5],p[7])
-    client.send_mode()
-
 def p_create_IP(p):
     '''
     create : OPEN LB ID SEMICOLON IP SEMICOLON NUMBER RB
     '''
     controller.create_server(p[3], p[5], p[7])
+
+
+def p_client(p):
+    '''
+    client : CLIENT LB ID SEMICOLON IP SEMICOLON NUMBER RB
+    '''
+    client = Client(p[3], p[5], p[7])
+    client.send_mode()
 
 
 def p_join(p):
@@ -78,6 +80,6 @@ parser = yacc.yacc()
 
 
 if __name__ == '__main__':
-    path = input("Enter path to file:")
-    s = read_file(path)
+    file_name = input("Enter name of file to execute: ")
+    s = read_file("tests/%s.txt" % file_name)
     parser.parse(s)
