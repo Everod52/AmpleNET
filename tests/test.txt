@@ -1,7 +1,7 @@
-open[s1;yourIP;4000]!
-open[s2;yourIP;5000]!
+open[s1;yourIP;4567]!
+open[s2;yourIP;4789]!
 (this is a comment)
 connect[s1;s2]!
-send[s1;s2;<Juana te amo>]!
-send[s2;s1;<me has roto el corazon>]!
-send[s1;s2;<no fui yo>]!
+send[s1;s2;<Hello, we are connected.>]!
+send[s2;s1;<Yes, this is fun.>]!
+send[s1;s2;<That was fun while it lasted, goodbye.>]!

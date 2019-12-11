@@ -18,7 +18,7 @@ def p_process(p):
             | join EXCLAMATION
             | communication
     '''
-    p[0]=''
+    p[0] = ''
 
 
 def p_create_DEFAULT(p):
